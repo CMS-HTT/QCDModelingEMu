@@ -1,48 +1,4 @@
 # QCDModelingEMu
 
-Setting up the code ->
-
-> cd $CMSSW_BASE/src
-> git clone HTT-utilities/QCDModelingEMu
-> cd HTT-utilities/QCDModelingEMu
-> scramv1 b
-
-The code provides interface to the OS/SS extrapolation
-factors, depending on e/mu kinematics, namely 
-pt(e), pt(mu), dR(e,mu)
-
-Usage of the code ->
-
-// add header file to your code
-#include "HTT-utilities/QCDModelingEMu/interface/QCDModelForEMu.h"
-
-// Create an instance of class QCDModelForEMu.
-// Constructor of the class loads RooT file  
-// containing OS/SS extrapolation
-// factors in bins of pt(e), pt(mu) and deltaR(e,mu).   
-// The OS/SS extrapolation factors are derived for two cases:
-// 1) inclusive baseline selection with the cut DZeta > -20 GeV 
-// 2) incluisve baseline selection w/o Dzeta cut
-QCDModelForEMu qcdWeights("HTT-utilities/QCDModelingEMu/data/QCD_weight_emu.root"); // with DZeta cut
-QCDModelForEMu qcdWeightsNoDZeta("HTT-utilities/QCDModelingEMu/data/QCD_weight_emu_nodzeta.root"); // w/o DZeta cut
-
-// accessing OS/SS extrapolation factor as a function
-// of pt(e), pt(mu), and dR(e,mu)
-float qcdweight = qcdWeights.getWeight(pt_e,pt_m,dR);
-
-// accessing OS/SS extrapolation factor corresponding
-// to +1sigma systematic variation of QCD background shape
-float qcdweightup = qcdWeights.getWeightUp(pt_e,pt_m,dR);
-
-// We suggest to compute OS/SS extrapolation factor
-// corresponding to the -1sigma systematic variation 
-// of the QCD background shape as
-float qcdweightdown = qcdweight * qcdweight / qcdweightup;  
-
-Use these OS/SS extrapolation factors as weights when
-building template for the QCD multijet background: 
-
-QCD(central) = [Data(SS) - nonQCD_MC(SS)]*qcdweight;
-QCD(+1sigma) = [Data(SS) - nonQCD_MC(SS)]*qcdweightup;
-QCD(-1sigma) = [Data(SS) - nonQCD_MC(SS)]*qcdweightdown;
+Please read instructions.txt
 
