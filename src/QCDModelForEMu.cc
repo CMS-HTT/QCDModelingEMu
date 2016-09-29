@@ -63,11 +63,11 @@ float QCDModelForEMu::getWeight(float pt_1, float pt_2,float dr_tt)
   float qcdweight = 1;
   
   if (dr_tt<2)
-    qcdweight = qcdHistWeightsCR1dRLt2H->Interpolate(pttrail,ptlead);
+    qcdweight = qcdHistWeightsCR1dRLt2H->GetBinContent(qcdHistWeightsCR1dRLt2H->FindBin(pttrail,ptlead));
   else if (dr_tt>=2&&dr_tt<4)
-    qcdweight = qcdHistWeightsCR1dR2to4H->Interpolate(pttrail,ptlead);
+    qcdweight = qcdHistWeightsCR1dR2to4H->GetBinContent(qcdHistWeightsCR1dR2to4H->FindBin(pttrail,ptlead));
   else
-    qcdweight = qcdHistWeightsCR1dRGt4H->Interpolate(pttrail,ptlead);
+    qcdweight = qcdHistWeightsCR1dRGt4H->GetBinContent(qcdHistWeightsCR1dRGt4H->FindBin(pttrail,ptlead));
   
   return qcdweight;
 
@@ -92,11 +92,11 @@ float QCDModelForEMu::getWeightUp(float pt_1, float pt_2, float dr_tt)
   float qcdweight = 1;
 
   if (dr_tt<2)
-    qcdweight = qcdHistWeightsCR2dRLt2H->Interpolate(pttrail,ptlead);
+    qcdweight = qcdHistWeightsCR2dRLt2H->GetBinContent(qcdHistWeightsCR2dRLt2H->FindBin(pttrail,ptlead));
   else if (dr_tt>=2&&dr_tt<4)
-    qcdweight = qcdHistWeightsCR2dR2to4H->Interpolate(pttrail,ptlead);
+    qcdweight = qcdHistWeightsCR2dR2to4H->GetBinContent(qcdHistWeightsCR2dR2to4H->FindBin(pttrail,ptlead));
   else
-    qcdweight = qcdHistWeightsCR2dRGt4H->Interpolate(pttrail,ptlead);
+    qcdweight = qcdHistWeightsCR2dRGt4H->GetBinContent(qcdHistWeightsCR2dRGt4H->FindBin(pttrail,ptlead));
 
   return qcdweight;
 
